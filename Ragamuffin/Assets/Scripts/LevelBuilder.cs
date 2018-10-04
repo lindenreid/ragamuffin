@@ -154,6 +154,17 @@ public class LevelBuilder : EditorWindow {
 			{
 				GUILayout.BeginVertical();
 				GUILayout.Label(ao.name, EditorStyles.label);
+
+				// highlight button for active object
+				if(_activeObj == ao.obj)
+				{
+					GUI.backgroundColor = Color.blue;
+				}
+				else
+				{
+					GUI.backgroundColor = Color.white;
+				}
+
 				if(GUILayout.Button(ao.icon, GUILayout.Width(ao.icon.width), GUILayout.Height(ao.icon.height)))
 				{
 					_activeObj = ao.obj;

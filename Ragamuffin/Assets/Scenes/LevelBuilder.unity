@@ -222,7 +222,7 @@ MonoBehaviour:
   CellWidth: 0.5
   CellHeight: 0.5
   NumCellsX: 50
-  NumCellsY: 50
+  NumCellsY: 25
   IconSize: 0.1
 --- !u!4 &1271206207
 Transform:
