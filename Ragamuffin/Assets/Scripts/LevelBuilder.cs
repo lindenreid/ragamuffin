@@ -7,8 +7,51 @@ public class LevelBuilder : EditorWindow {
 
 	private string _titleString = "Level Builder";
 	private string _assetPath = "Assets/Prefabs/Environment";
+	private Vector2 _scrollPos;
 
-	private List<string> _assets;
+	// putting the assets and the directories in structs is maybe overkill,
+	// but in the future i'd like to add tags to the assets
+	// to make them searchable by more than just name,
+	// which this struct will be useful for! :D 
+	private struct AssetObj
+	{
+		public string name;
+		public GameObject obj;
+		public Texture2D icon;
+
+		public AssetObj(string path)
+		{
+			// find object 
+			obj = (GameObject)AssetDatabase.LoadAssetAtPath(path, typeof(GameObject));
+
+			if(obj)
+			{
+				name = obj.name;
+				icon = AssetPreview.GetAssetPreview(obj);
+			}
+			else 
+			{
+				// it's ok, unity's gui won't crash from trying to access null stuff
+				// teehee i'm lazy
+				Debug.LogError("LevelBuilder unable to find object at path " + path);
+				name = "ERROR";
+				icon = null;
+			}
+		}
+	}
+
+	private struct AssetDir
+	{
+		public string name;
+		public List<AssetObj> assets;
+
+		public AssetDir(string n) {
+			name = n;
+			assets = new List<AssetObj>();
+		}
+	}
+
+	private List<AssetDir> _assets;
 	private GameObject _activeObj;
 
 	private Grid grid;
@@ -27,7 +70,8 @@ public class LevelBuilder : EditorWindow {
 		else 
 			Debug.LogError("LevelBuilder could not find Grid!");
 
-		_assets = new List<string>();
+		PopulateAssets(_assetPath);
+
 		// subscribes OnSceneUpdate to scene view update,
 		// so that we can listen for mouse clicks in scene view
 		SceneView.onSceneGUIDelegate = OnSceneUpdate;
@@ -60,53 +104,67 @@ public class LevelBuilder : EditorWindow {
 
 	private void PopulateAssets(string path)
 	{
-		// find all prefabs in given directory
+		_assets = new List<AssetDir>();
 		DirectoryInfo dir = new DirectoryInfo(path);
-        FileInfo[] info = dir.GetFiles("*.prefab");
 
-		foreach (FileInfo file in info) {
-			string asset = _assetPath + "/" + file.Name;
-			if(!_assets.Contains(asset)){
-				_assets.Add(asset);
-				//Debug.Log("found asset " + asset);
+		// find all directories
+		// NOTE: ONLY GOES ONE LEVEL DEEP. don't rlly feel like making this recursive
+		DirectoryInfo[] subDirs = dir.GetDirectories();
+
+		foreach(DirectoryInfo d in subDirs)
+		{
+			AssetDir assetDir = new AssetDir(d.Name);
+
+			// find all prefabs in each directory
+			FileInfo[] info = d.GetFiles("*.prefab");
+			foreach (FileInfo file in info) {
+				string assetPath = _assetPath + "/" + assetDir.name + "/" + file.Name;
+				assetDir.assets.Add(new AssetObj(assetPath));
 			}
+
+			_assets.Add(assetDir);
 		}
 	}
 
 	// creates the LevelBuilder window
 	void OnGUI()
 	{
-		PopulateAssets(_assetPath); //todo: make asset path editable, only reload assets on edit
-
 		GUILayout.Label(_titleString, EditorStyles.boldLabel);
-
 		if(GUILayout.Button("Clear Selected Object"))
 		{
 			ClearSelection();
 		}
+		EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+		
+		// SCROLL
+		var window = EditorWindow.GetWindow<LevelBuilder>();
+		_scrollPos = GUILayout.BeginScrollView(_scrollPos, GUILayout.Width(window.position.width), GUILayout.Height(window.position.height-70));
 
-		// load all found assets into buttons
-		// button click loads corresponding object into active object
-		foreach(string path in _assets)
+		// create lists for each directory
+		for (int i = 0; i < _assets.Count; i++)
 		{
-			// find object 
-			GameObject obj = (GameObject)AssetDatabase.LoadAssetAtPath(path, typeof(GameObject));
+			AssetDir dir = _assets[i]; 
 
-			if(obj)
+			GUILayout.Label(dir.name, EditorStyles.boldLabel);
+			
+			// load all found assets into buttons
+			// button click loads corresponding object into active object
+			GUILayout.BeginHorizontal();
+			foreach(AssetObj ao in dir.assets)
 			{
-				// get icon for this object
-				Texture2D icon = AssetPreview.GetAssetPreview(obj);
-
-				if(GUILayout.Button(icon))
+				GUILayout.BeginVertical();
+				GUILayout.Label(ao.name, EditorStyles.label);
+				if(GUILayout.Button(ao.icon, GUILayout.Width(ao.icon.width), GUILayout.Height(ao.icon.height)))
 				{
-					_activeObj = obj;
+					_activeObj = ao.obj;
 				}
+				GUILayout.EndVertical();
 			}
-			else 
-			{
-				Debug.LogError("LevelBuilder unable to find corresponding object for asset at" + path);
-			}
+			GUILayout.EndHorizontal();
 		}
+
+		GUILayout.EndScrollView();
+		// END SCROLL
 	}
 
 	void OnDestroy()
