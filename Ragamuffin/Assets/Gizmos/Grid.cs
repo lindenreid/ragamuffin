@@ -38,4 +38,17 @@ public class Grid : MonoBehaviour {
         }
     }
 
+    public Vector3 FindClosestGridPos(Vector3 pos)
+	{
+		Vector3 closestGridPoint = grid[0,0];
+		foreach(Vector3 point in grid)
+		{
+			if (Mathf.Abs(Vector3.Distance(point, pos)) < Mathf.Abs(Vector3.Distance(closestGridPoint, pos)))
+				closestGridPoint = point;
+		}
+		closestGridPoint.z = 0;
+
+		return closestGridPoint;
+	}
+
 }

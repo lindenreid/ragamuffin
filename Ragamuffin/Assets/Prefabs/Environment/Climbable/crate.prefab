@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4169041808953910}
   - component: {fileID: 212785077990042198}
+  - component: {fileID: 114971245171901360}
   m_Layer: 0
   m_Name: crate
   m_TagString: Untagged
@@ -40,6 +41,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114971245171901360
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1091578653850334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccb02985ac1a46a458967bfae12c2215, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grid: {fileID: 0}
+  levelBuilder: {fileID: 0}
 --- !u!212 &212785077990042198
 SpriteRenderer:
   m_ObjectHideFlags: 1

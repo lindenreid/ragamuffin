@@ -219,8 +219,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartX: 0
   StartY: 0
-  CellWidth: 0.5
-  CellHeight: 0.5
+  CellWidth: 1
+  CellHeight: 1
   NumCellsX: 50
   NumCellsY: 25
   IconSize: 0.1

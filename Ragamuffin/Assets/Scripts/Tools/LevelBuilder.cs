@@ -89,16 +89,17 @@ public class LevelBuilder : EditorWindow {
 			Vector3 mousePosition = r.origin;
 
 			// snap position to closest grid location
-			Vector3 closestGridPoint = grid.grid[0,0];
-			foreach(Vector3 point in grid.grid)
-			{
-				if (Mathf.Abs(Vector3.Distance(point, mousePosition)) < Mathf.Abs(Vector3.Distance(closestGridPoint, mousePosition)))
-					closestGridPoint = point;
-			}
-			closestGridPoint.z = 0;
+			Vector3 closestGridPoint = grid.FindClosestGridPos(mousePosition);
 
 			// instantiate object at mouse position
-			Object obj = Object.Instantiate(_activeObj, closestGridPoint, Quaternion.identity);
+			GameObject obj = Instantiate(_activeObj, closestGridPoint, Quaternion.identity) as GameObject;
+
+			// give obj references to grid
+			LevelObj levelObj = obj.GetComponent<LevelObj>();
+			if(levelObj)
+			{
+				levelObj.grid = grid;
+			}
 		}
 	}
 
@@ -157,17 +158,16 @@ public class LevelBuilder : EditorWindow {
 
 				// highlight button for active object
 				if(_activeObj == ao.obj)
-				{
 					GUI.backgroundColor = Color.blue;
-				}
 				else
-				{
 					GUI.backgroundColor = Color.white;
-				}
 
 				if(GUILayout.Button(ao.icon, GUILayout.Width(ao.icon.width), GUILayout.Height(ao.icon.height)))
 				{
-					_activeObj = ao.obj;
+					if(_activeObj != ao.obj)
+						_activeObj = ao.obj;
+					else 
+						_activeObj = null; // de-select obj when clicking a selected button
 				}
 				GUILayout.EndVertical();
 			}
