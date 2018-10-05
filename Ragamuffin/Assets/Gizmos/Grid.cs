@@ -15,6 +15,11 @@ public class Grid : MonoBehaviour {
 
     public Vector3[,] grid;
 
+    void Start()
+    {
+        grid = new Vector3[NumCellsX, NumCellsY];
+    }
+
     void CreateGrid()
     {
         grid = new Vector3[NumCellsX, NumCellsY];
@@ -40,6 +45,9 @@ public class Grid : MonoBehaviour {
 
     public Vector3 FindClosestGridPos(Vector3 pos)
 	{
+        if(grid.Length == 0)
+            return pos;
+
 		Vector3 closestGridPoint = grid[0,0];
 		foreach(Vector3 point in grid)
 		{

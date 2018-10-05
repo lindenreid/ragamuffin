@@ -9,10 +9,11 @@ public class LevelObj : MonoBehaviour {
 
 	void Update()
 	{
-		if(oldPosition != transform.position)
+		if(oldPosition != transform.position && grid)
 		{
 			transform.position = grid.FindClosestGridPos(transform.position);
 		}
+		oldPosition = transform.position;
 	}
 	
 }

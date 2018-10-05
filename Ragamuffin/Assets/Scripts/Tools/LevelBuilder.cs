@@ -8,6 +8,8 @@ public class LevelBuilder : EditorWindow {
 	private string _titleString = "Level Builder";
 	private string _assetPath = "Assets/Prefabs/Environment";
 	private Vector2 _scrollPos;
+	private string search = "";
+	private int _scrollFudgeFactor = 100; // i'm lazy and don't feel like writing the code to calculate the correct length
 
 	// putting the assets and the directories in structs is maybe overkill,
 	// but in the future i'd like to add tags to the assets
@@ -131,15 +133,22 @@ public class LevelBuilder : EditorWindow {
 	void OnGUI()
 	{
 		GUILayout.Label(_titleString, EditorStyles.boldLabel);
+
 		if(GUILayout.Button("Clear Selected Object"))
 		{
 			ClearSelection();
 		}
+
+		GUILayout.Label("Search", EditorStyles.label);
+		search = GUILayout.TextField(search); 
+
 		EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
 		
 		// SCROLL
 		var window = EditorWindow.GetWindow<LevelBuilder>();
-		_scrollPos = GUILayout.BeginScrollView(_scrollPos, GUILayout.Width(window.position.width), GUILayout.Height(window.position.height-70));
+		_scrollPos = GUILayout.BeginScrollView(_scrollPos,
+		               GUILayout.Width(window.position.width),
+					   GUILayout.Height(window.position.height - _scrollFudgeFactor));
 
 		// create lists for each directory
 		for (int i = 0; i < _assets.Count; i++)
@@ -148,30 +157,36 @@ public class LevelBuilder : EditorWindow {
 
 			GUILayout.Label(dir.name, EditorStyles.boldLabel);
 			
-			// load all found assets into buttons
-			// button click loads corresponding object into active object
-			GUILayout.BeginHorizontal();
-			foreach(AssetObj ao in dir.assets)
+			// filter assets by search term
+			List<AssetObj> assets = FindAssetsWithTerm(dir.assets, search); 
+
+			if(assets.Count > 0)
 			{
-				GUILayout.BeginVertical();
-				GUILayout.Label(ao.name, EditorStyles.label);
-
-				// highlight button for active object
-				if(_activeObj == ao.obj)
-					GUI.backgroundColor = Color.blue;
-				else
-					GUI.backgroundColor = Color.white;
-
-				if(GUILayout.Button(ao.icon, GUILayout.Width(ao.icon.width), GUILayout.Height(ao.icon.height)))
+				// load all assets into buttons
+				// button click loads corresponding object into active object
+				GUILayout.BeginHorizontal(GUILayout.Width(assets[0].icon.width * assets.Count));
+				foreach(AssetObj ao in assets)
 				{
-					if(_activeObj != ao.obj)
-						_activeObj = ao.obj;
-					else 
-						_activeObj = null; // de-select obj when clicking a selected button
+					GUILayout.BeginVertical();
+					GUILayout.Label(ao.name, EditorStyles.label);
+
+					// highlight button for active object
+					if(_activeObj == ao.obj)
+						GUI.backgroundColor = Color.blue;
+					else
+						GUI.backgroundColor = Color.white;
+
+					if(GUILayout.Button(ao.icon, GUILayout.Width(ao.icon.width), GUILayout.Height(ao.icon.height)))
+					{
+						if(_activeObj != ao.obj)
+							_activeObj = ao.obj;
+						else 
+							_activeObj = null; // de-select obj when clicking a selected button
+					}
+					GUILayout.EndVertical();
 				}
-				GUILayout.EndVertical();
+				GUILayout.EndHorizontal();
 			}
-			GUILayout.EndHorizontal();
 		}
 
 		GUILayout.EndScrollView();
@@ -184,10 +199,23 @@ public class LevelBuilder : EditorWindow {
 		ClearSelection();
 	}
 
+	private List<AssetObj> FindAssetsWithTerm(List<AssetObj> assets, string term)
+	{
+		if(term.Length == 0)
+			return assets;
+
+		List<AssetObj> results = new List<AssetObj>();
+		foreach(AssetObj a in assets)
+		{
+			if(a.name.Contains(term))
+				results.Add(a);
+		}
+
+		return results;
+	}
+
 	private void ClearSelection()
 	{
-		// todo: maybe have highlighting or something to indicate selection
-		// that will be cleared here later
 		_activeObj = null;
 	}
 
