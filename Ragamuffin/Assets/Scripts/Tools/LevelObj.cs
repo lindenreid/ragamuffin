@@ -8,6 +8,11 @@ public class LevelObj : MonoBehaviour {
 
 	private Vector3 oldPosition;
 
+	void Start()
+	{
+		oldPosition = transform.position;
+	}
+
 	void Update()
 	{
 		if(!freePlace)
