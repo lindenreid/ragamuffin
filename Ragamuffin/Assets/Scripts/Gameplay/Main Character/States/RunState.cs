@@ -6,11 +6,11 @@ public class RunState : MovementState {
 
 	public override void Update()
 	{
-		if(!StateAllowed())
+		if(!ConditionsMet())
 		{
 			mc.SetMovementState(mc.idleState);
 		}
-		else if(mc.jumpState.StateAllowed())
+		else if(mc.jumpState.ConditionsMet())
         {
             mc.SetMovementState(mc.jumpState);
         }
@@ -23,7 +23,7 @@ public class RunState : MovementState {
 		}
 	}
 
-	public override bool StateAllowed()
+	public override bool ConditionsMet()
 	{
 		if(Mathf.Abs(Input.GetAxis(mc.horizontalAxis)) > mc.xInputThreshold)
 			return true;

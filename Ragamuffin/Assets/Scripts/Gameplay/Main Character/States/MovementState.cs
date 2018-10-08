@@ -10,7 +10,7 @@ public abstract class MovementState {
 
 	public abstract void Update();
 
-	public virtual bool StateAllowed() { return true; }
+	public virtual bool ConditionsMet() { return true; }
 	public virtual void OnStateEnter() {}
 	public virtual void OnStateExit() {}
 	public virtual void OnTriggerEnter(Collider2D col) {}

@@ -8,7 +8,7 @@ public class JumpState : MovementState {
 	{
 		if(mc.controller.isGrounded)
 		{
-			if(mc.runState.StateAllowed())
+			if(mc.runState.ConditionsMet())
 				mc.SetMovementState(mc.runState);
 			else
 				mc.SetMovementState(mc.idleState);
@@ -33,7 +33,7 @@ public class JumpState : MovementState {
 		Move();
 	}
 
-	public override bool StateAllowed()
+	public override bool ConditionsMet()
 	{
 		if(mc.controller.isGrounded && Input.GetAxis(mc.verticalAxis) > 0f)
 			return true;

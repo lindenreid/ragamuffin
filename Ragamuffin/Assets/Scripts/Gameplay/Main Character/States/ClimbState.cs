@@ -31,4 +31,9 @@ public class ClimbState : MovementState {
 		Move();
 	}
 
+	public override bool ConditionsMet()
+	{
+		return false;
+	}
+
 }
