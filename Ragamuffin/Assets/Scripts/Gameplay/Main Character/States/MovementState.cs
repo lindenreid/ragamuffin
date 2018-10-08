@@ -29,8 +29,8 @@ public abstract class MovementState {
 			mc.velocity.y = 0;
 	}
 
-	// changes x-velocity based on input & speed damping (either in-air or ground)
-	protected void ApplyVelocityX(float damping)
+	// changes x-velocity based on input & speed & damping
+	protected void ApplyVelocityX(float speed, float damping)
 	{
 		// check horizontal input direction
 		float horizontalInput = Input.GetAxis(mc.horizontalAxis);
@@ -53,7 +53,7 @@ public abstract class MovementState {
 		}
 
 		// apply horizontal speed
-		mc.velocity.x = Mathf.Lerp(mc.velocity.x, normalizedHorizontalSpeed * mc.runSpeed, Time.deltaTime * damping);
+		mc.velocity.x = Mathf.Lerp(mc.velocity.x, normalizedHorizontalSpeed * speed, Time.deltaTime * damping);
 	}
 
 	// changes y-velocity based on input & gravity

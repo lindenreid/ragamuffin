@@ -1,27 +1,27 @@
-﻿using UnityEngine;
+using UnityEngine;
 
-public class RunState : MovementState {
+public class StealthState : MovementState {
 
-	public RunState(MainCharacter c) : base(c) { name = "run"; }
+	public StealthState(MainCharacter c) : base(c) { name = "stealth"; }
 
 	public override void Update()
 	{
-		if(mc.stealthState.ConditionsMet())
-		{
-			mc.SetMovementState(mc.stealthState);
-		}
+		if(mc.runState.ConditionsMet())
+        {
+            mc.SetMovementState(mc.runState);
+        }
 		else if(mc.jumpState.ConditionsMet())
         {
             mc.SetMovementState(mc.jumpState);
         }
-		else if(!ConditionsMet())
+        else if(!ConditionsMet())
 		{
 			mc.SetMovementState(mc.idleState);
 		}
 		else
 		{
 			ApplyGrounding();
-			ApplyVelocityX(mc.runSpeed, mc.groundDamping);
+			ApplyVelocityX(mc.stealthSpeed, mc.groundDamping);
             ApplyVelocityY();
 			Move();
 		}
@@ -29,7 +29,7 @@ public class RunState : MovementState {
 
 	public override bool ConditionsMet()
 	{
-		if(Input.GetKey(KeyCode.LeftShift) && 
+		if(!Input.GetKey(KeyCode.LeftShift) && // shift is for running
 			Mathf.Abs(Input.GetAxis(mc.horizontalAxis)) > mc.xInputThreshold)
 			return true;
 		return false;

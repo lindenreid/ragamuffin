@@ -6,7 +6,11 @@ public class IdleState : MovementState {
 
 	public override void Update()
 	{
-        if(mc.runState.ConditionsMet())
+        if(mc.stealthState.ConditionsMet())
+		{
+			mc.SetMovementState(mc.stealthState);
+		}
+        else if(mc.runState.ConditionsMet())
         {
             mc.SetMovementState(mc.runState);
         }

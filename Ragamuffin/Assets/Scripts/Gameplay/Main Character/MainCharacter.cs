@@ -8,6 +8,7 @@ public class MainCharacter : MonoBehaviour
 	// movement config
 	public float gravity = -25f;
 	public float runSpeed = 8f;
+	public float stealthSpeed = 4f;
 	public float groundDamping = 20f; // how fast do we change direction? higher means faster
 	public float inAirDamping = 5f;
 	public float climbDamping = 20f;
@@ -24,6 +25,7 @@ public class MainCharacter : MonoBehaviour
 	public RunState runState;
 	public IdleState idleState;
 	public ClimbState climbState;
+	public StealthState stealthState;
 
 	// movement vars
 	public Vector3 velocity;
@@ -48,6 +50,7 @@ public class MainCharacter : MonoBehaviour
 		runState = new RunState(this);
 		idleState = new IdleState(this);
 		climbState = new ClimbState(this);
+		stealthState = new StealthState(this);
 
 		// set beginning state
 		SetMovementState(idleState);

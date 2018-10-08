@@ -15,7 +15,7 @@ public class ClimbState : MovementState {
 		else
 		{
 			ApplyGrounding();
-			ApplyVelocityX(mc.climbDamping);
+			ApplyVelocityX(mc.climbSpeed, mc.climbDamping);
             ApplyClimb(); // ignores gravity
 			Move();
 		}
@@ -26,7 +26,7 @@ public class ClimbState : MovementState {
 		// ignores grounding for first movement calculation
 		// to avoid problem where grounding checks prevent character
 		// from lifting off the ground
-		ApplyVelocityX(mc.climbDamping);
+		ApplyVelocityX(mc.climbSpeed, mc.climbDamping);
         ApplyClimb(); // ignores gravity
 		Move();
 	}

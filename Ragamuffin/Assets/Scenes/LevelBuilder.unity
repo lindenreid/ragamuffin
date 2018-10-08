@@ -1147,7 +1147,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &296875932
 Transform:
   m_ObjectHideFlags: 0
@@ -1492,6 +1492,11 @@ Prefab:
       propertyPath: grid
       value: 
       objectReference: {fileID: 1271206206}
+    - target: {fileID: 114577329604710644, guid: 57b9f4e270e77de42aeb0695303c53d6,
+        type: 2}
+      propertyPath: stealthSpeed
+      value: 2.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57b9f4e270e77de42aeb0695303c53d6, type: 2}
   m_IsPrefabAsset: 0
@@ -3695,6 +3700,7 @@ MonoBehaviour:
   mainCharacterTransform: {fileID: 0}
   openSprite: {fileID: 21300000, guid: cae3fd9ef702e4c01a8eac69044d2213, type: 3}
   closedSprite: {fileID: 21300000, guid: 6c065a0a39cdb40e1903a66cd5c58495, type: 3}
+  locked: 0
 --- !u!61 &1954480230
 BoxCollider2D:
   m_ObjectHideFlags: 0

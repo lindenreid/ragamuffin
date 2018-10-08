@@ -8,7 +8,9 @@ public class JumpState : MovementState {
 	{
 		if(mc.controller.isGrounded)
 		{
-			if(mc.runState.ConditionsMet())
+			if(mc.stealthState.ConditionsMet())
+				mc.SetMovementState(mc.stealthState);
+			else if(mc.runState.ConditionsMet())
 				mc.SetMovementState(mc.runState);
 			else
 				mc.SetMovementState(mc.idleState);
@@ -16,7 +18,7 @@ public class JumpState : MovementState {
 		else 
 		{
 			ApplyGrounding();
-			ApplyVelocityX(mc.inAirDamping);
+			ApplyVelocityX(mc.runSpeed, mc.inAirDamping);
             ApplyVelocityY();
 			Move();
 		}
@@ -28,7 +30,7 @@ public class JumpState : MovementState {
 		// ignores grounding for first movement calculation
 		// to avoid problem where grounding checks prevent character
 		// from lifting off the ground
-		ApplyVelocityX(mc.inAirDamping);
+		ApplyVelocityX(mc.runSpeed, mc.inAirDamping);
 		ApplyVelocityY();
 		Move();
 	}
