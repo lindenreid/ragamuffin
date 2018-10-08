@@ -168,6 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 1271206206}
+  gameController: {fileID: 0}
   freePlace: 0
 --- !u!212 &12718329
 SpriteRenderer:
@@ -283,6 +284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 1271206206}
+  gameController: {fileID: 0}
   freePlace: 0
 --- !u!212 &43739442
 SpriteRenderer:
@@ -390,6 +392,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 1271206206}
+  gameController: {fileID: 0}
   freePlace: 0
 --- !u!212 &101344093
 SpriteRenderer:
@@ -448,7 +451,7 @@ Transform:
   m_LocalScale: {x: 5.0218205, y: 5.0218205, z: 5.0218205}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &128390035
 GameObject:
@@ -505,6 +508,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 1271206206}
+  gameController: {fileID: 0}
   freePlace: 0
 --- !u!212 &128390038
 SpriteRenderer:
@@ -620,6 +624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 1271206206}
+  gameController: {fileID: 0}
   freePlace: 0
 --- !u!212 &143408264
 SpriteRenderer:
@@ -735,6 +740,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 1271206206}
+  gameController: {fileID: 0}
   freePlace: 0
 --- !u!212 &145630970
 SpriteRenderer:
@@ -850,6 +856,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 1271206206}
+  gameController: {fileID: 0}
   freePlace: 0
 --- !u!212 &153364670
 SpriteRenderer:
@@ -970,6 +977,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 1271206206}
+  gameController: {fileID: 0}
   freePlace: 0
 --- !u!212 &290107304
 SpriteRenderer:
@@ -1106,7 +1114,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &293303752
 MonoBehaviour:
@@ -1152,7 +1160,7 @@ Transform:
   m_Children:
   - {fileID: 1192548585}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &309785654
 GameObject:
@@ -1209,6 +1217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 1271206206}
+  gameController: {fileID: 0}
   freePlace: 0
 --- !u!212 &309785657
 SpriteRenderer:
@@ -1324,6 +1333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 1271206206}
+  gameController: {fileID: 0}
   freePlace: 0
 --- !u!212 &429020359
 SpriteRenderer:
@@ -1436,7 +1446,7 @@ Transform:
   - {fileID: 1728198246}
   - {fileID: 574172419}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &533032040
 Prefab:
@@ -1475,7 +1485,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4201193413313856, guid: 57b9f4e270e77de42aeb0695303c53d6, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114124966489461944, guid: 57b9f4e270e77de42aeb0695303c53d6,
         type: 2}
@@ -1540,6 +1550,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 1271206206}
+  gameController: {fileID: 0}
   freePlace: 0
 --- !u!212 &574172418
 SpriteRenderer:
@@ -1605,6 +1616,47 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4943610637689696, guid: f759e7824c2d85e43a85436f3cf3a2fe,
     type: 2}
   m_PrefabInternal: {fileID: 1867748978}
+--- !u!1 &578785420
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 578785422}
+  - component: {fileID: 578785421}
+  m_Layer: 0
+  m_Name: GameController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &578785421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 578785420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a34e7ff855ad991459a750d9bd01f732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCharacter: {fileID: 1660249719}
+--- !u!4 &578785422
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 578785420}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.9835286, y: 4.651458, z: 0.009967562}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &631338710
 Prefab:
   m_ObjectHideFlags: 0
@@ -1707,6 +1759,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 1271206206}
+  gameController: {fileID: 0}
   freePlace: 0
 --- !u!212 &684555433
 SpriteRenderer:
@@ -1814,6 +1867,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 1271206206}
+  gameController: {fileID: 0}
   freePlace: 0
 --- !u!212 &699498903
 SpriteRenderer:
@@ -1872,7 +1926,7 @@ Transform:
   m_LocalScale: {x: 5.0218205, y: 5.0218205, z: 5.0218205}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &721439686
 GameObject:
@@ -1904,7 +1958,7 @@ Transform:
   - {fileID: 1999049051}
   - {fileID: 1380680928}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &869757179
 GameObject:
@@ -1961,6 +2015,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 1271206206}
+  gameController: {fileID: 0}
   freePlace: 0
 --- !u!212 &869757182
 SpriteRenderer:
@@ -2068,6 +2123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 1271206206}
+  gameController: {fileID: 0}
   freePlace: 0
 --- !u!212 &892654383
 SpriteRenderer:
@@ -2126,7 +2182,7 @@ Transform:
   m_LocalScale: {x: 5.0218205, y: 5.0218205, z: 5.0218205}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &901737647
 GameObject:
@@ -2183,6 +2239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 1271206206}
+  gameController: {fileID: 0}
   freePlace: 0
 --- !u!212 &901737650
 SpriteRenderer:
@@ -2298,6 +2355,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 1271206206}
+  gameController: {fileID: 0}
   freePlace: 0
 --- !u!212 &978683341
 SpriteRenderer:
@@ -2413,6 +2471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 1271206206}
+  gameController: {fileID: 0}
   freePlace: 0
 --- !u!212 &1040788012
 SpriteRenderer:
@@ -2533,6 +2592,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 1271206206}
+  gameController: {fileID: 0}
   freePlace: 0
 --- !u!212 &1181272417
 SpriteRenderer:
@@ -2661,6 +2721,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 1271206206}
+  gameController: {fileID: 0}
   freePlace: 0
 --- !u!212 &1192548588
 SpriteRenderer:
@@ -2753,7 +2814,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1361440749
 GameObject:
@@ -2810,6 +2871,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 1271206206}
+  gameController: {fileID: 0}
   freePlace: 0
 --- !u!212 &1361440752
 SpriteRenderer:
@@ -2986,6 +3048,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 1271206206}
+  gameController: {fileID: 0}
   freePlace: 0
 --- !u!212 &1461545780
 SpriteRenderer:
@@ -3153,6 +3216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 1271206206}
+  gameController: {fileID: 0}
   freePlace: 0
 --- !u!212 &1586159670
 SpriteRenderer:
@@ -3213,6 +3277,12 @@ Transform:
   m_Father: {fileID: 509106412}
   m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1660249719 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114577329604710644, guid: 57b9f4e270e77de42aeb0695303c53d6,
+    type: 2}
+  m_PrefabInternal: {fileID: 533032040}
+  m_Script: {fileID: 11500000, guid: 0c7885e7957c6394f9e98dbc93d38586, type: 3}
 --- !u!1 &1728198242
 GameObject:
   m_ObjectHideFlags: 0
@@ -3268,6 +3338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 1271206206}
+  gameController: {fileID: 0}
   freePlace: 0
 --- !u!212 &1728198245
 SpriteRenderer:
@@ -3383,6 +3454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 1271206206}
+  gameController: {fileID: 0}
   freePlace: 0
 --- !u!212 &1823291819
 SpriteRenderer:
@@ -3517,7 +3589,7 @@ Transform:
   m_Children:
   - {fileID: 577668966}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1999049050
 Prefab:
@@ -3635,6 +3707,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 1271206206}
+  gameController: {fileID: 0}
   freePlace: 0
 --- !u!212 &2037150094
 SpriteRenderer:
@@ -3750,6 +3823,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 1271206206}
+  gameController: {fileID: 0}
   freePlace: 0
 --- !u!212 &2042553965
 SpriteRenderer:
@@ -3865,6 +3939,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 1271206206}
+  gameController: {fileID: 0}
   freePlace: 0
 --- !u!212 &2093298647
 SpriteRenderer:
@@ -3980,6 +4055,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 1271206206}
+  gameController: {fileID: 0}
   freePlace: 0
 --- !u!212 &2096681326
 SpriteRenderer:
@@ -4095,6 +4171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 1271206206}
+  gameController: {fileID: 0}
   freePlace: 0
 --- !u!212 &2109972987
 SpriteRenderer:

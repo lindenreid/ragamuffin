@@ -39,7 +39,6 @@ public class MainCharacter : MonoBehaviour
 		//_animator = GetComponent<Animator>();
 		controller = GetComponent<CharacterController2D>();
 
-		// listen to some events for illustration purposes
 		controller.onControllerCollidedEvent += onControllerCollider;
 		controller.onTriggerEnterEvent += onTriggerEnterEvent;
 		controller.onTriggerExitEvent += onTriggerExitEvent;

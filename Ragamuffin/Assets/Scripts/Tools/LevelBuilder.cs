@@ -57,6 +57,7 @@ public class LevelBuilder : EditorWindow {
 	private GameObject _activeObj;
 
 	private Grid grid;
+	private GameController gameController;
 
 	[MenuItem ("Window/Level Builder")]
 	public static void ShowWindow()
@@ -71,6 +72,12 @@ public class LevelBuilder : EditorWindow {
 			grid = gridObj.GetComponent<Grid>();
 		else 
 			Debug.LogError("LevelBuilder could not find Grid!");
+
+		GameObject gameControllerObj = (GameObject)GameObject.Find("GameController");
+		if(gameControllerObj)
+			gameController = gameControllerObj.GetComponent<GameController>();
+		else 
+			Debug.LogError("LevelBuilder could not find GameController!");
 
 		PopulateAssets(_assetPath);
 
@@ -96,11 +103,12 @@ public class LevelBuilder : EditorWindow {
 			// instantiate object at mouse position
 			GameObject obj = Instantiate(_activeObj, closestGridPoint, Quaternion.identity) as GameObject;
 
-			// give obj references to grid
+			// give obj references to grid & game controller
 			LevelObj levelObj = obj.GetComponent<LevelObj>();
 			if(levelObj)
 			{
 				levelObj.grid = grid;
+				levelObj.gameController = gameController;
 			}
 		}
 	}

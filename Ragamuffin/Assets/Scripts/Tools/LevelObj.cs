@@ -4,6 +4,7 @@
 public class LevelObj : MonoBehaviour {
 
 	public Grid grid;
+	public GameController gameController;
 	public bool freePlace = false;
 
 	private Vector3 oldPosition;
