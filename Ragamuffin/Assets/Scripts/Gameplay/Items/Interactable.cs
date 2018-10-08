@@ -1,12 +1,19 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
+
+// Interact() is used for player interactions with object,
+// while Trigger() is used for other Interactables triggering it.
+// For example, a locked door might simply display "locked!" when Interact()ed with,
+// but upon pulling a hidden lever, which calls Trigger(), it opens.
 
 [RequireComponent(typeof(LevelObj))]
 public class Interactable : MonoBehaviour {
 
 	public float InteractionRange = 1.0f;
+	public List<Interactable> triggers;
 	
-	private LevelObj levelObj;
-	private Transform mainCharacterTransform;
+	public LevelObj levelObj;
+	public Transform mainCharacterTransform;
 
 	void Awake()
 	{
@@ -24,6 +31,11 @@ public class Interactable : MonoBehaviour {
 	public virtual void Interact()
 	{
 		Debug.LogWarning(gameObject.name + " Iteractable's Interact() funciton not implemented.");
+	}
+
+	public virtual void Trigger()
+	{
+		Debug.LogWarning(gameObject.name + " Iteractable's Trigger() funciton not implemented.");
 	}
 	
 }

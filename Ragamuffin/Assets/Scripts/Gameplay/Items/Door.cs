@@ -4,6 +4,7 @@ public class Door : Interactable {
 
 	public Sprite openSprite;
 	public Sprite closedSprite;
+	public bool locked;
 
 	private SpriteRenderer spriteRenderer;
 	private BoxCollider2D boxCollider;
@@ -18,6 +19,20 @@ public class Door : Interactable {
 	}
 
 	public override void Interact()
+	{
+		if(locked)
+			Debug.Log("Locked!");
+		else
+			ToggleOpen();
+	}
+
+	public override void Trigger()
+	{
+		locked = false;
+		ToggleOpen();
+	}
+
+	public void ToggleOpen()
 	{
 		if(open)
 		{
