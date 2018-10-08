@@ -8,7 +8,7 @@ public class JumpState : MovementState {
 	{
 		if(mc.controller.isGrounded)
 		{
-			if(Mathf.Abs(Input.GetAxis(mc.horizontalAxis)) > mc.xInputThreshold)
+			if(mc.runState.StateAllowed())
 				mc.SetMovementState(mc.runState);
 			else
 				mc.SetMovementState(mc.idleState);
@@ -31,6 +31,13 @@ public class JumpState : MovementState {
 		ApplyVelocityX(mc.inAirDamping);
 		ApplyVelocityY();
 		Move();
+	}
+
+	public override bool StateAllowed()
+	{
+		if(mc.controller.isGrounded && Input.GetAxis(mc.verticalAxis) > 0f)
+			return true;
+		return false;
 	}
 
 }

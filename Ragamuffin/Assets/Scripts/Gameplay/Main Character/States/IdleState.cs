@@ -6,11 +6,11 @@ public class IdleState : MovementState {
 
 	public override void Update()
 	{
-        if(Mathf.Abs(Input.GetAxis(mc.horizontalAxis)) > mc.xInputThreshold)
+        if(mc.runState.StateAllowed())
         {
             mc.SetMovementState(mc.runState);
         }
-        else if(mc.controller.isGrounded && Input.GetAxis(mc.verticalAxis) > 0)
+        else if(mc.jumpState.StateAllowed())
         {
             mc.SetMovementState(mc.jumpState);
         }

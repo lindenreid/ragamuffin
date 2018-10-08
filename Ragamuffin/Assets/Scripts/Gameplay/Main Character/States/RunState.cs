@@ -6,13 +6,11 @@ public class RunState : MovementState {
 
 	public override void Update()
 	{
-		float horizontalInput = Input.GetAxis(mc.horizontalAxis);
-
-		if(Mathf.Abs(horizontalInput) < mc.xInputThreshold)
+		if(!StateAllowed())
 		{
 			mc.SetMovementState(mc.idleState);
 		}
-		else if(mc.controller.isGrounded && Input.GetAxis(mc.verticalAxis) > 0)
+		else if(mc.jumpState.StateAllowed())
         {
             mc.SetMovementState(mc.jumpState);
         }
@@ -23,6 +21,13 @@ public class RunState : MovementState {
             ApplyVelocityY();
 			Move();
 		}
+	}
+
+	public override bool StateAllowed()
+	{
+		if(Mathf.Abs(Input.GetAxis(mc.horizontalAxis)) > mc.xInputThreshold)
+			return true;
+		return false;
 	}
 
 }
