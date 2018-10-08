@@ -101,7 +101,7 @@ public class MainCharacter : MonoBehaviour
 		if(currentMovementState != null)
 			currentMovementState.OnStateEnter();
 
-		Debug.Log("new state: " + currentMovementState.name);
+		//Debug.Log("new state: " + currentMovementState.name);
 	}
 
 }
