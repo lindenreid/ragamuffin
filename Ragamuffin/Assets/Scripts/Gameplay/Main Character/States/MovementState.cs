@@ -7,6 +7,7 @@ public abstract class MovementState {
 
 	protected float normalizedHorizontalSpeed = 0;
 	protected float normalizedVerticalSpeed = 0;
+	protected float gravity = 0.0f;
 
 	public abstract void Update();
 
@@ -19,6 +20,7 @@ public abstract class MovementState {
 	public MovementState(MainCharacter cm)
 	{
 		mc = cm;
+		gravity = mc.gameController.gravity;
 	}
 
 	// does grounding check
@@ -60,7 +62,7 @@ public abstract class MovementState {
 	protected void ApplyVelocityY()
 	{
 		// apply gravity
-		mc.velocity.y += mc.gravity * Time.deltaTime;
+		mc.velocity.y += gravity * Time.deltaTime;
 
 		// if holding down bump up our movement amount and turn off one way platform detection for a frame.
 		// this lets us jump down through one way platforms

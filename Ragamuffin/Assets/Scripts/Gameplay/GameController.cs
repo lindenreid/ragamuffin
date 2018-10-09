@@ -6,6 +6,8 @@
 // that almost every object will need to access
 public class GameController : MonoBehaviour {
 
+	public float gravity = -25.0f;
+
 	public MainCharacter mainCharacter;
 
 }

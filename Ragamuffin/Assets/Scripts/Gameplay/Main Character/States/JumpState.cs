@@ -26,7 +26,7 @@ public class JumpState : MovementState {
 
 	public override void OnStateEnter()
 	{
-		mc.velocity.y = Mathf.Sqrt( 2f * mc.jumpHeight * -mc.gravity );
+		mc.velocity.y = Mathf.Sqrt( 2f * mc.jumpHeight * -gravity );
 		// ignores grounding for first movement calculation
 		// to avoid problem where grounding checks prevent character
 		// from lifting off the ground

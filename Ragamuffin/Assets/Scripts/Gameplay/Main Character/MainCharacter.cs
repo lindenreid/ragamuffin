@@ -2,11 +2,12 @@
 using System.Collections;
 using Prime31;
 
-
 public class MainCharacter : MonoBehaviour
 {
+	// controllers
+	public GameController gameController;
+
 	// movement config
-	public float gravity = -25f;
 	public float runSpeed = 8f;
 	public float stealthSpeed = 4f;
 	public float groundDamping = 20f; // how fast do we change direction? higher means faster
