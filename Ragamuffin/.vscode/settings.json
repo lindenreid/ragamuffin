@@ -52,5 +52,7 @@
         "ProjectSettings/":true,
         "temp/":true,
         "Temp/":true
-    }
+    },
+    "csharpfixformat.style.braces.onSameLine": false,
+    "csharpfixformat.style.spaces.beforeParenthesis": false
 }
