@@ -7,10 +7,9 @@ public class Collectable : MonoBehaviour
   {
     var collector = col.GetComponent<Collector>();
 
-    if (collector != null)
-    {
-      collector.Collect(gameObject);
-      gameObject.SetActive(false);
-    }
+    if (collector == null) return;
+
+    collector.Collect(gameObject);
+    gameObject.SetActive(false);
   }
 }
