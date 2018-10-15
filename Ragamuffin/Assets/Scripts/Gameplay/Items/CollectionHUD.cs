@@ -6,7 +6,7 @@ public class CollectionHUD : MonoBehaviour
 {
   public Collection collection;
 
-  private RectTransform UIArea;
+  RectTransform UIArea;
 
   void Start()
   {
