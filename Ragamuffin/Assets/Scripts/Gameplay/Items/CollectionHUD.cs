@@ -16,6 +16,11 @@ public class CollectionHUD : MonoBehaviour
     UIArea = GetComponent<RectTransform>();
   }
 
+  void OnDestroy()
+  {
+    collection.OnAddObject -= DisplayObject;
+  }
+
   void DisplayObject(GameObject collectable)
   {
     var spriteRenderer = collectable.GetComponent<SpriteRenderer>();
